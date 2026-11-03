@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LingoVibe">
+    <meta property="og:title" content="LingoVibe — Онлайн-школа английского">
+    <meta property="og:description" content="Индивидуальные уроки с опытными преподавателями. Коммуникативный подход. Заговорите на первом уроке!">
+    <meta property="og:url" content="https://lingovibe-demo.netlify.app/">
+    <meta property="og:image" content="https://lingovibe-demo.netlify.app/pictures/og-preview.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LingoVibe - Онлайн-школа английского">
+    <meta name="twitter:description" content="Индивидуальные уроки с опытными преподавателями. Заговорите на первом уроке!">
+    <meta name="twitter:image" content="https://lingovibe-demo.netlify.app/pictures/og-preview.jpg">
+	
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="apple-touch-icon" href="favicon.svg">
+    <meta name="description" content="LingoVibe — онлайн-школа английского языка. Индивидуальные уроки с опытными преподавателями, современный коммуникативный подход, бесплатный пробный урок.">
+    <title>LingoVibe — Онлайн-школа английского языка</title>
+    
+	<!-- Tailwind (production build) -->
+	<link rel="stylesheet" href="dist/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Внешние стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased selection:bg-brand-lime selection:text-brand-dark">
+
+    <!-- НАВИГАЦИЯ -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-50 bg-white">
+            <a href="#" class="flex items-center gap-0.5 group" aria-label="LingoVibe — на главную">
+				<div class="w-10 h-10 rounded-xl bg-brand-dark flex items-center justify-center font-extrabold text-xl text-brand-lime transition-transform group-hover:rotate-6 shrink-0">L</div>
+				<span class="text-2xl font-extrabold tracking-tight text-brand-dark leading-none pl-1 mt-1">ingo<span class="text-brand-purpleDark">Vibe</span></span>
+			</a>
+
+            <nav class="hidden lg:flex items-center gap-8 font-bold text-sm text-gray-700" aria-label="Основная навигация">
+                <a href="#about" class="hover:text-brand-dark transition-colors py-1 hover:border-b-2 border-brand-lime">О школе</a>
+                <a href="#courses" class="hover:text-brand-dark transition-colors py-1 hover:border-b-2 border-brand-lime">Направления</a>
+                <a href="#pricing" class="hover:text-brand-dark transition-colors py-1 hover:border-b-2 border-brand-lime">Стоимость</a>
+                <a href="#faq" class="hover:text-brand-dark transition-colors py-1 hover:border-b-2 border-brand-lime">FAQ</a>
+                <a href="#contacts" class="hover:text-brand-dark transition-colors py-1 hover:border-b-2 border-brand-lime">Контакты</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center gap-5">
+                <!-- Ссылка "Стать преподавателем" -->
+                <a href="#" onclick="openModal('Стать преподавателем')" class="group flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-brand-purpleDark transition-colors">
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-brand-purple/20 transition-colors">
+                        <i class="fa-solid fa-chalkboard-user text-brand-purpleDark text-xs"></i>
+                    </div>
+                    <span>Стать преподавателем</span>
+                </a>
+
+                <!-- Разделитель -->
+                <div class="h-6 w-px bg-gray-200"></div>
+
+                <!-- Кнопка -->
+                <button type="button" id="header-cta" onclick="openModal()" class="bg-brand-dark hover:bg-black text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-sm hover:shadow-lime-glow active:scale-95 opacity-0 translate-y-2 pointer-events-none" aria-hidden="true" tabindex="-1">
+                    Попробовать бесплатно
+                </button>
+            </div>
+
+            <button id="mobile-menu-btn" type="button" class="lg:hidden p-2 text-brand-dark focus:outline-none relative z-[60]" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+    </header>
+
+       <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-white z-[55] translate-x-full transition-transform duration-300 lg:hidden shadow-2xl flex flex-col px-6 pt-28 pb-8">
+        <!-- Добавили pt-28 (опустили вниз) и pb-8 (отодвинули от низа). Блок ссылок теперь скроллится, если не влезает -->
+        <div class="flex flex-col gap-5 font-bold text-gray-800 text-lg overflow-y-auto mb-6"> 
+            <a href="#about" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">О школе</a>
+            <a href="#courses" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Направления</a>
+            <a href="#pricing" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Стоимость</a>
+            <a href="#faq" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">FAQ</a>
+            <a href="#contacts" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Контакты</a>
+            <a href="#" onclick="openModal('Стать преподавателем')" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Стать преподавателем</a>
+        </div>
+        
+        <!-- Кнопка прижата к низу, но не перекрывается плашкой -->
+        <div class="mt-auto">
+            <button type="button" onclick="openModal()" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl shadow-lg active:scale-95 text-lg hover:bg-black transition-colors">
+                Попробовать бесплатно
+            </button>
+        </div>
+    </div>
+
+    <!-- 1. HERO -->
+    <section id="hero" class="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden section-fade visible bg-white">
+        <div class="parallax-bg absolute top-20 left-[5%] w-32 h-32 rounded-full bg-brand-purple/20 blur-3xl pointer-events-none" data-speed="0.15"></div>
+        <div class="parallax-bg absolute top-80 right-[5%] w-48 h-48 rounded-full bg-brand-lime/20 blur-3xl pointer-events-none" data-speed="-0.2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                
+                <!-- Левая колонка -->
+                <div class="flex flex-col items-center lg:items-start text-center lg:text-left z-10 w-full mb-10 lg:mb-0 relative">
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-extrabold tracking-tight text-brand-dark leading-[1.1] max-w-xl mx-auto lg:mx-0 mb-6 relative z-20">
+                        Говорите <br/>
+                        по-английски <br/>
+                        <span class="text-brand-purpleDark">без границ</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed mb-8 relative z-20">
+                        Качественные индивидуальные онлайн-уроки. Современный коммуникативный подход, который заставит вас заговорить с первого урока.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto relative z-20 mb-8">
+                        <button type="button" onclick="openModal()" class="w-full sm:w-auto bg-brand-dark hover:bg-black text-white text-base font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 group">
+                            <span>Попробовать бесплатно</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <a href="#about" class="w-full sm:w-auto bg-white hover:bg-gray-50 border-2 border-gray-200 text-brand-dark text-base font-bold px-8 py-3.5 rounded-xl transition-all duration-200 text-center flex items-center justify-center">
+                            Как это работает
+                        </a>
+                    </div>
+
+                    <!-- СЛОВО ДНЯ -->
+                    <div class="hidden lg:block w-[140%] max-w-[520px] mt-6 lg:-ml-4 z-10 relative group">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-purple/20 to-brand-lime/20 blur-[50px] rounded-full transition-all duration-500 group-hover:opacity-100 opacity-60"></div>
+
+                        <div class="relative bg-white border border-gray-100 rounded-2xl p-5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-1">
+                            
+                            <div class="flex items-center justify-between pb-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm">📖</span>
+                                    <span class="text-xs font-extrabold text-brand-dark uppercase tracking-widest">Слово дня</span>
+                                </div>
+                                <span class="text-xs font-bold text-brand-purpleDark bg-brand-purple/10 px-2.5 py-1 rounded-md border border-brand-purple/20">
+                                    B2
+                                </span>
+                            </div>
+
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-brand-dark leading-none mb-1.5 tracking-tight">Serendipity</h3>
+                                <p class="text-sm font-bold text-gray-500 font-mono tracking-widest">/ˌser.ənˈdɪp.ə.ti/</p>
+                            </div>
+
+                            <div class="pt-1">
+                                <p class="text-sm text-gray-800 leading-snug font-medium">
+                                    <strong class="text-brand-dark font-extrabold uppercase text-xs tracking-wider mr-1.5">Сущ.</strong> 
+                                    Способность случайно делать счастливые открытия.
+                                </p>
+                            </div>
+
+                            <div class="flex items-start gap-2 mt-1">
+                                <i class="fa-solid fa-quote-left text-brand-lime text-sm mt-0.5"></i>
+                                <p class="text-sm text-gray-700 leading-snug font-medium">
+                                    Finding the <strong class="text-brand-dark font-extrabold">LingoVibe</strong> course was pure <span class="text-brand-purpleDark font-bold underline decoration-brand-lime decoration-2 underline-offset-4">serendipity</span>.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Правая колонка: Карточки -->
+                <div class="relative perspective-1000 w-full max-w-lg mx-auto hidden lg:block">
+                    <div id="hero-card-container" class="relative preserve-3d p-2">
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4 relative">
+                            
+                            <div class="col-span-2 bg-gradient-to-br from-brand-purple/20 via-white to-brand-lime/10 rounded-3xl p-3 sm:p-4 shadow-sm border border-gray-200 relative overflow-hidden flex flex-col items-center justify-center min-h-[200px] sm:min-h-[220px] group mt-6 sm:mt-0">
+                                <div class="relative w-full h-48 sm:h-60 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                                    <img src="pictures/teacher.jpg" alt="Преподаватель LingoVibe" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                    <div class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-brand-dark shadow-sm border border-gray-100">
+                                        <div class="text-xs sm:text-sm font-extrabold">
+                                            Алекса
+                                        </div>
+                                        <div class="text-[10px] text-gray-500 font-medium">Ваш личный преподаватель</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-span-2 flex justify-center sm:justify-end absolute top-0 right-2 sm:-top-2 sm:-right-2 lg:absolute lg:top-[-1rem] lg:right-[-0.5rem] z-20">
+                                <div class="bg-white border border-gray-200 px-3 py-1.5 rounded-2xl shadow-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                                    <span class="text-[11px] font-bold text-brand-dark">Рейтинг 4.9/5</span>
+                                </div>
+                            </div>
+
+                            <div class="col-span-2 bg-brand-dark text-white rounded-3xl p-4 sm:p-5 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-3 border border-gray-800">
+                                <div class="self-end bg-brand-lime text-brand-dark font-bold text-xs sm:text-sm px-4 py-2.5 rounded-2xl rounded-br-none shadow-sm animate-subtle max-w-[85%]">
+                                    Привет! Я хочу свободно говорить по-английски! 👋
+                                </div>
+                                <div class="self-start bg-gray-800 text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-2xl rounded-bl-none border border-gray-700 max-w-[80%]">
+                                    Отлично, заговорим на первом же уроке! 🚀
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-lime rounded-3xl p-4 sm:p-5 shadow-sm flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                                <span class="text-2xl sm:text-3xl font-extrabold text-brand-dark">50</span>
+                                <span class="text-[10px] sm:text-xs font-bold text-brand-dark/80 uppercase tracking-wider leading-tight mt-2">минут длительность урока</span>
+                            </div>
+
+                            <div class="bg-brand-dark text-white rounded-3xl p-4 sm:p-5 shadow-sm flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+								<span class="text-xl sm:text-2xl font-extrabold text-brand-lime">Личный</span>
+                                <span class="text-[10px] sm:text-xs font-semibold text-gray-300 leading-tight mt-2">преподаватель для вас</span>
+							</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+	
+    <!-- 2. О ШКОЛЕ -->
+    <section id="about" class="py-20 sm:py-28 bg-white relative section-fade">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brand-purpleDark font-bold text-xs sm:text-sm uppercase tracking-wider bg-brand-purple/40 px-4 py-1.5 rounded-full">
+                    Наш подход к обучению
+                </span>
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark mt-4 tracking-tight">
+                    Английский, который гармонично впишется в вашу жизнь
+                </h2>
+                <p class="text-gray-600 mt-3 sm:mt-4 text-base sm:text-lg">
+                    Мы заставили забыть про скучные правила и устаревшие учебники. Вот как мы помогаем заговорить быстро.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+                <!-- 1 -->
+                <div class="about-hover-card relative group bg-brand-bg p-6 sm:p-8 rounded-3xl border-2 border-gray-100 overflow-hidden cursor-pointer flex flex-col">
+                    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-brand-lime/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                    <div class="about-icon w-12 h-12 sm:w-14 sm:h-14 bg-brand-lime rounded-2xl flex items-center justify-center text-brand-dark text-xl sm:text-2xl font-bold mb-6 shadow-sm">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors min-h-[3.5rem] sm:min-h-[3.75rem]">80% практики речи</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-medium flex-grow">
+                        Вы говорите почти весь урок. Грамматика усваивается естественно через живой диалог.
+                    </p>
+                </div>
+
+                <!-- 2 -->
+                <div class="about-hover-card relative group bg-brand-bg p-6 sm:p-8 rounded-3xl border-2 border-gray-100 overflow-hidden cursor-pointer flex flex-col">
+                    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-brand-purple/30 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                    <div class="about-icon w-12 h-12 sm:w-14 sm:h-14 bg-brand-purple rounded-2xl flex items-center justify-center text-brand-purpleDark text-xl sm:text-2xl font-bold mb-6 shadow-sm">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors min-h-[3.5rem] sm:min-h-[3.75rem]">Персональный трек</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-medium flex-grow">
+                        Программа подстраивается под ваши цели — будь то переезд, интервью или подготовка к экзаменам.
+                    </p>
+                </div>
+
+                <!-- 3 -->
+                <div class="about-hover-card relative group bg-brand-bg p-6 sm:p-8 rounded-3xl border-2 border-gray-100 overflow-hidden cursor-pointer flex flex-col">
+                    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-brand-dark/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                    <div class="about-icon w-12 h-12 sm:w-14 sm:h-14 bg-brand-dark text-brand-lime rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-bold mb-6 shadow-sm">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors min-h-[3.5rem] sm:min-h-[3.75rem]">Опытные учителя</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-medium flex-grow">
+                        Преподаватели с сертификатами CELTA и TEFL, умеющие увлечь процессом без зубрежки.
+                    </p>
+                </div>
+
+                <!-- 4 -->
+                <div class="about-hover-card relative group bg-brand-bg p-6 sm:p-8 rounded-3xl border-2 border-gray-100 overflow-hidden cursor-pointer flex flex-col">
+                    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-brand-lime/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                    <div class="about-icon w-12 h-12 sm:w-14 sm:h-14 bg-brand-lime rounded-2xl flex items-center justify-center text-brand-dark text-xl sm:text-2xl font-bold mb-6 shadow-sm">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors min-h-[3.5rem] sm:min-h-[3.75rem]">Гибридный формат</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-medium flex-grow">
+                        Индивидуальные уроки совмещены с интерактивными тренажерами и мобильным приложением.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+    <!-- 3. НАПРАВЛЕНИЯ -->
+    <section id="courses" class="py-20 sm:py-28 bg-brand-bg relative section-fade">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Шапка секции с визуалом справа -->
+            <div class="relative mb-12 sm:mb-16">
+                <div class="relative z-10 max-w-xl">
+                    <span class="text-brand-purpleDark font-bold text-xs sm:text-sm uppercase tracking-wider bg-brand-purple/40 px-4 py-1.5 rounded-full">
+                        Направления обучения
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark mt-4 tracking-tight">
+                        Выберите подходящую программу
+                    </h2>
+                    <p class="text-gray-600 mt-4 text-sm sm:text-base max-w-lg">
+                        Адаптированные курсы для работы, путешествий, детей и сдачи международных экзаменов.
+                    </p>
+                </div>
+
+                <!-- Визуальный декор (только для ПК) -->
+                <div class="hidden lg:block absolute top-1/2 -translate-y-1/2 right-0 w-[400px] h-[300px] pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-purple/20 to-brand-lime/20 blur-[80px] rounded-full"></div>
+                    
+                    <div class="absolute top-0 right-10 w-64 bg-brand-dark rounded-2xl p-5 shadow-2xl border border-gray-700/50 transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500 pointer-events-auto">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-lime flex items-center justify-center text-brand-dark text-xs">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-white font-bold text-sm">Уровень C1</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full mb-2 overflow-hidden">
+                            <div class="bg-brand-lime h-full w-[85%] rounded-full"></div>
+                        </div>
+                        <p class="text-gray-400 text-xs">Отличный прогресс!</p>
+                    </div>
+
+                    <div class="absolute top-28 right-44 w-32 bg-brand-lime rounded-xl p-3 shadow-xl transform rotate-[6deg] hover:rotate-0 transition-transform duration-500 delay-75 pointer-events-auto">
+                        <div class="text-brand-dark font-extrabold text-2xl mb-1">12</div>
+                        <div class="text-brand-dark/80 text-[10px] font-bold uppercase tracking-wider leading-tight">уроков пройдено</div>
+                    </div>
+
+                    <div class="absolute bottom-4 right-0 w-56 bg-white rounded-xl p-4 shadow-xl border border-gray-100 transform rotate-[3deg] hover:rotate-0 transition-transform duration-500 delay-150 flex items-center gap-3 pointer-events-auto">
+                        <div class="w-10 h-10 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purpleDark text-lg shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <div class="text-brand-dark font-bold text-sm leading-tight">IELTS 7.5</div>
+                            <div class="text-gray-500 text-[11px]">Цель достигнута</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сетка курсов -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- General English -->
+                <div class="interactive-course-card group relative bg-white rounded-3xl p-6 sm:p-8 border-2 border-gray-200/90 shadow-neo hover:border-brand-purpleDark hover:shadow-purple-glow overflow-hidden flex flex-col justify-between">
+                    <div class="card-glow-bg absolute top-0 right-0 w-48 h-48 bg-brand-purple/40 rounded-bl-full pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="course-badge bg-gray-100 group-hover:bg-brand-purple group-hover:text-brand-dark text-brand-dark font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase">Для жизни и поездок</span>
+                            <div class="course-icon w-12 h-12 rounded-2xl bg-brand-purple flex items-center justify-center text-brand-dark font-bold text-2xl shadow-sm">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors">General English</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium">
+                            Преодолейте языковой барьер, пополните словарный запас и общайтесь легко в повседневной жизни и путешествиях.
+                        </p>
+                    </div>
+                    <div>
+                        <ul class="space-y-2 mb-8 text-xs sm:text-sm text-gray-700 font-semibold">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Разговорные темы и сленг</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Восприятие речи на слух</li>
+                        </ul>
+                        <button type="button" onclick="openModal('General English')" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl group-hover:bg-brand-purpleDark group-hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Узнать подробнее</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business English -->
+                <div class="interactive-course-card group relative bg-brand-dark text-white rounded-3xl p-6 sm:p-8 border-2 border-transparent shadow-neo hover:border-brand-lime hover:shadow-lime-glow overflow-hidden flex flex-col justify-between">
+                    <div class="card-glow-bg absolute -bottom-10 -right-10 w-52 h-52 bg-brand-lime/20 rounded-full blur-2xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="course-badge bg-gray-800 group-hover:bg-brand-lime group-hover:text-brand-dark text-brand-lime font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase">Для карьеры</span>
+                            <div class="course-icon w-12 h-12 rounded-2xl bg-brand-lime text-brand-dark flex items-center justify-center font-bold text-2xl shadow-sm">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-brand-lime transition-colors">Business English</h3>
+                        <p class="text-gray-300 text-sm mb-6 leading-relaxed font-medium">
+                            Деловая переписка, проведение презентаций, переговоры и успешное прохождение собеседований в IT и международные компании.
+                        </p>
+                    </div>
+                    <div>
+                        <ul class="space-y-2 mb-8 text-xs sm:text-sm text-gray-300 font-semibold">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-lime text-base"></i> Бизнес-этикет и терминология</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-lime text-base"></i> Симуляция интервью и встреч</li>
+                        </ul>
+                        <button type="button" onclick="openModal('Business English')" class="w-full bg-brand-lime text-brand-dark font-extrabold py-4 rounded-xl group-hover:bg-white transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Узнать подробнее</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kids & Teens -->
+                <div class="interactive-course-card group relative bg-white rounded-3xl p-6 sm:p-8 border-2 border-gray-200/90 shadow-neo hover:border-brand-lime hover:shadow-lime-glow overflow-hidden flex flex-col justify-between">
+                    <div class="card-glow-bg absolute top-0 right-0 w-48 h-48 bg-brand-lime/30 rounded-bl-full pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="course-badge bg-gray-100 group-hover:bg-brand-lime group-hover:text-brand-dark text-brand-dark font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase">Дети 6-16 лет</span>
+                            <div class="course-icon w-12 h-12 rounded-2xl bg-brand-lime flex items-center justify-center text-brand-dark font-bold text-2xl shadow-sm">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-dark transition-colors">Kids &amp; Teens</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium">
+                            Игровой интерактивный формат, который прививает любовь к языку, подтягивает оценки в школе и готовит к обучению за рубежом.
+                        </p>
+                    </div>
+                    <div>
+                        <ul class="space-y-2 mb-8 text-xs sm:text-sm text-gray-700 font-semibold">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Игры, интерактивы и комиксы</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Отчеты для родителей каждый месяц</li>
+                        </ul>
+                        <button type="button" onclick="openModal('Kids & Teens')" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl group-hover:bg-brand-lime group-hover:text-brand-dark transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Узнать подробнее</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IELTS / TOEFL -->
+                <div class="interactive-course-card group relative bg-brand-purple/20 border-2 border-brand-purple rounded-3xl p-6 sm:p-8 shadow-neo hover:border-brand-purpleDark hover:shadow-purple-glow overflow-hidden flex flex-col justify-between">
+                    <div class="card-glow-bg absolute bottom-0 right-0 w-48 h-48 bg-brand-purpleDark/20 rounded-tl-full pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="course-badge bg-white text-brand-purpleDark font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase">Подготовка к экзаменам</span>
+                            <div class="course-icon w-12 h-12 rounded-2xl bg-brand-purpleDark text-white flex items-center justify-center font-bold text-2xl shadow-sm">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-purpleDark transition-colors">IELTS / TOEFL Prep</h3>
+                        <p class="text-gray-700 text-sm mb-6 leading-relaxed font-medium">
+                            Стратегия сдачи всех 4 секций (Speaking, Writing, Reading, Listening) для гарантированного получения проходного балла.
+                        </p>
+                    </div>
+                    <div>
+                        <ul class="space-y-2 mb-8 text-xs sm:text-sm text-gray-800 font-semibold">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Пробные тестирования (Mocks)</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-purpleDark text-base"></i> Проверка эссе экспертами</li>
+                        </ul>
+                        <button type="button" onclick="openModal('IELTS / TOEFL')" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl group-hover:bg-brand-purpleDark transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Узнать подробнее</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. ОТЗЫВЫ (СЛАЙДЕР) -->
+    <section id="reviews" class="py-20 sm:py-28 bg-brand-bg relative section-fade overflow-hidden">
+        
+        <!-- ПРАЗДНИЧНЫЙ ФОН: Конфетти и свечения -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <!-- Свечения -->
+            <div class="absolute -top-20 -left-20 w-96 h-96 bg-brand-purple/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-80 h-80 bg-brand-lime/10 rounded-full blur-3xl"></div>
+            
+            <!-- Конфетти 1 -->
+            <div class="absolute top-10 left-[10%] w-2 h-4 bg-brand-lime rounded-sm rotate-12 animate-confetti-1"></div>
+            <!-- Конфетти 2 -->
+            <div class="absolute top-32 left-[20%] w-3 h-3 bg-brand-purpleDark rounded-full animate-confetti-2"></div>
+            <!-- Конфетти 3 -->
+            <div class="absolute top-16 right-[15%] w-2 h-2 bg-yellow-400 rounded-full animate-confetti-3"></div>
+            <!-- Конфетти 4 -->
+            <div class="absolute top-48 right-[25%] w-2 h-5 bg-brand-purple rounded-sm -rotate-12 animate-confetti-1" style="animation-delay: 2s;"></div>
+            <!-- Конфетти 5 -->
+            <div class="absolute top-24 left-[40%] w-1.5 h-1.5 bg-brand-dark rounded-full animate-confetti-2" style="animation-delay: 1s;"></div>
+            <!-- Конфетти 6 -->
+            <div class="absolute top-10 right-[40%] w-2 h-3 bg-brand-lime rounded-sm rotate-45 animate-confetti-3" style="animation-delay: 3s;"></div>
+            <!-- Конфетти 7 -->
+            <div class="absolute bottom-32 left-[5%] w-2 h-5 bg-brand-purple rounded-sm -rotate-45 animate-confetti-1" style="animation-delay: 1.5s;"></div>
+            <!-- Конфетти 8 -->
+            <div class="absolute bottom-20 right-[10%] w-3 h-3 bg-brand-lime rounded-full animate-confetti-2" style="animation-delay: 0.5s;"></div>
+            <!-- Конфетти 9 -->
+            <div class="absolute top-1/2 left-[15%] w-2 h-4 bg-yellow-400 rounded-sm rotate-12 animate-confetti-3" style="animation-delay: 2.5s;"></div>
+            <!-- Конфетти 10 -->
+            <div class="absolute top-1/3 right-[5%] w-2 h-2 bg-brand-purpleDark rounded-full animate-confetti-1" style="animation-delay: 4s;"></div>
+            <!-- Конфетти 11 -->
+            <div class="absolute bottom-40 left-[50%] w-2 h-6 bg-brand-lime rounded-sm -rotate-12 animate-confetti-2" style="animation-delay: 1.8s;"></div>
+            <!-- Конфетти 12 -->
+            <div class="absolute top-40 right-[35%] w-3 h-3 bg-brand-purple rounded-full animate-confetti-3" style="animation-delay: 0.8s;"></div>
+            <!-- Конфетти 13 -->
+            <div class="absolute bottom-10 left-[25%] w-1.5 h-1.5 bg-brand-dark rounded-full animate-confetti-1" style="animation-delay: 3.5s;"></div>
+            <!-- Конфетти 14 -->
+            <div class="absolute top-24 right-[45%] w-2 h-4 bg-yellow-400 rounded-sm rotate-45 animate-confetti-2" style="animation-delay: 2.2s;"></div>
+
+            <!-- Звездочки -->
+            <i class="fa-solid fa-star absolute top-32 right-[10%] text-yellow-400/30 text-4xl animate-float-1"></i>
+            <i class="fa-solid fa-star absolute bottom-20 left-[5%] text-brand-purpleDark/20 text-3xl animate-float-2"></i>
+            <i class="fa-solid fa-star absolute top-1/2 right-[20%] text-brand-lime/20 text-2xl animate-float-1" style="animation-delay: 1s;"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center relative z-10">
+            <span class="text-brand-purpleDark font-bold text-xs sm:text-sm uppercase tracking-wider bg-brand-purple/40 px-4 py-1.5 rounded-full inline-block">
+                Отзывы учеников
+            </span>
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark mt-4 tracking-tight">
+                Они уже заговорили
+            </h2>
+            <p class="text-gray-600 mt-3 sm:text-4xl text-base sm:text-lg max-w-2xl mx-auto">
+                Более 1200 студентов доверили нам свой английский.
+            </p>
+        </div>
+
+        <!-- Контейнер слайдера -->
+        <div class="max-w-3xl mx-auto px-4 overflow-hidden relative z-10">
+            <!-- Лента слайдов -->
+            <div class="slider-container" id="reviews-slider">
+                
+                <!-- Слайд 1 -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "За 3 месяца занятий я наконец-то перестала бояться говорить. Переговоры с зарубежными партнерами теперь проходят на ура!"
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/aigerim.jpg" alt="Айгерим" class="w-12 h-12 rounded-full object-cover border-2 border-brand-purple">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Айгерим К.</h4>
+                                <p class="text-xs text-gray-500 font-medium">Бизнес-английский, B2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайд 2 -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "Пробовал разные школы, но тут реально заставляют говорить. Погружаешься в язык с головой. Уже через месяц свободно общался в поездке."
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/daniyar.jpg" alt="Данияр" class="w-12 h-12 rounded-full object-cover border-2 border-brand-lime">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Данияр М.</h4>
+                                <p class="text-xs text-gray-500 font-medium">General English, C1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайд 3 -->
+				<div class="slide-item px-2">
+					<div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+						<div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+						</div>
+						<p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+							"Сдала IELTS на 7.5 с первого раза! Очень помогли пробные тесты и разбор эссе. Отдельное спасибо за поддержку."
+						</p>
+						<div class="flex items-center gap-4 mt-auto">
+							<img src="pictures/feedback_users/madina.jpg" alt="Мадина" class="w-12 h-12 rounded-full object-cover border-2 border-brand-purple">
+							<div>
+								<h4 class="text-base font-bold text-brand-dark">Мадина С.</h4>
+								<p class="text-xs text-gray-500 font-medium">IELTS Prep, 7.5</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+                <!-- Слайд 4 -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "Ребенок в восторге от уроков! Игры, интерактивы, никакой зубрежки. Оценки в школе подтянулись уже через месяц."
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/gulnara.jpg" alt="Гульнара" class="w-12 h-12 rounded-full object-cover border-2 border-brand-lime">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Гульнара Т.</h4>
+                                <p class="text-xs text-gray-500 font-medium">Kids & Teens (мама ученика)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайд 5 -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "Проходил собеседование в международную IT-компанию. Симуляция интервью с преподавателем реально помогла — получил оффер!"
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/erlan.jpg" alt="Ерлан" class="w-12 h-12 rounded-full object-cover border-2 border-brand-purple">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Ерлан Ж.</h4>
+                                <p class="text-xs text-gray-500 font-medium">Business English, C1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайд 6 -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "Очень удобный формат: платформа, приложение, перенос уроков. Занимаюсь в удовольствие, уже вижу прогресс в разговорной речи."
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/asel.jpg" alt="Асель" class="w-12 h-12 rounded-full object-cover border-2 border-brand-lime">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Асель Б.</h4>
+                                <p class="text-xs text-gray-500 font-medium">General English, B1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайд 7 (Дубликат первого) -->
+                <div class="slide-item px-2">
+                    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <div class="flex text-yellow-400 mb-4 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium mb-8 flex-grow">
+                            "За 3 месяца занятий я наконец-то перестала бояться говорить. Переговоры с зарубежными партнерами теперь проходят на ура!"
+                        </p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="pictures/feedback_users/aigerim.jpg" alt="Айгерим" class="w-12 h-12 rounded-full object-cover border-2 border-brand-purple">
+                            <div>
+                                <h4 class="text-base font-bold text-brand-dark">Айгерим К.</h4>
+                                <p class="text-xs text-gray-500 font-medium">Бизнес-английский, B2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+	
+    <!-- 5. СТОИМОСТЬ -->
+    <section id="pricing" class="py-20 sm:py-28 bg-white relative section-fade">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brand-purpleDark font-bold text-xs sm:text-sm uppercase tracking-wider bg-brand-purple/40 px-4 py-1.5 rounded-full">
+                    Программы и стоимость
+                </span>
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark mt-4 tracking-tight">
+                    Прозрачные тарифы без скрытых платежей
+                </h2>
+                <p class="text-gray-600 mt-3 sm:mt-4 text-base sm:text-lg">
+                    Выберите удобный темп обучения и пакет занятий.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+                <!-- Базовый -->
+                <div class="bg-brand-bg rounded-3xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between hover:border-gray-400 transition-all hover:-translate-y-1">
+                    <div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-seedling text-gray-400"></i> Базовый
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6">Для поддержания уровня и плавного старта.</p>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-dark">45 000 ₸</span>
+                            <span class="text-gray-500 text-sm">/ месяц</span>
+                        </div>
+                        <div class="text-xs font-semibold text-gray-500 mb-6 uppercase tracking-wider">Пакет из 8 уроков (5 625 ₸ / урок)</div>
+                        <ul class="space-y-4 text-xs sm:text-sm text-gray-700 font-medium mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Уроки по 50 минут (1-на-1)</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Доступ к материалам платформы</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Перенос уроков без сгорания</li>
+                            <li class="flex items-center gap-3 text-gray-400"><i class="fa-solid fa-circle-xmark"></i> Разговорный клуб</li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="openModal('Тариф Базовый')" class="w-full bg-white border-2 border-brand-dark text-brand-dark font-bold py-3.5 rounded-xl hover:bg-brand-dark hover:text-white transition-colors">
+                        Выбрать тариф
+                    </button>
+                </div>
+
+                <!-- Стандарт -->
+                <div class="relative bg-brand-dark text-white rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between transform lg:-translate-y-4 border-2 border-brand-lime hover:shadow-lime-glow transition-all duration-300">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-lime text-brand-dark font-extrabold text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                        Популярный выбор
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 mt-2 flex items-center gap-2">
+                            <i class="fa-solid fa-star text-brand-lime"></i> Стандарт
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-6">Оптимальный курс для быстрого результата.</p>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-lime">78 000 ₸</span>
+                            <span class="text-gray-400 text-sm">/ месяц</span>
+                        </div>
+                        <div class="text-xs font-semibold text-brand-lime/80 mb-6 uppercase tracking-wider">Пакет из 12 уроков (6 500 ₸ / урок)</div>
+                        <ul class="space-y-4 text-xs sm:text-sm text-gray-300 font-medium mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-lime"></i> 12 индивидуальных занятий</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-lime"></i> Полный доступ к интерактивной платформе</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-lime"></i> Приоритет при выборе расписания</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-lime"></i> Безлимитный Разговорный Клуб</li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="openModal('Тариф Стандарт')" class="w-full bg-brand-lime text-brand-dark font-bold py-4 rounded-xl hover:bg-white transition-colors shadow-lg">
+                        Выбрать тариф
+                    </button>
+                </div>
+
+                <!-- Интенсив -->
+                <div class="bg-brand-bg rounded-3xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between hover:border-gray-400 transition-all hover:-translate-y-1">
+                    <div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-brand-purpleDark"></i> Интенсив / IELTS
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6">Максимальное погружение и подготовка.</p>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-dark">135 000 ₸</span>
+                            <span class="text-gray-500 text-sm">/ месяц</span>
+                        </div>
+                        <div class="text-xs font-semibold text-gray-500 mb-6 uppercase tracking-wider">Пакет из 16 уроков + IELTS спецкурс</div>
+                        <ul class="space-y-4 text-xs sm:text-sm text-gray-700 font-medium mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> 16 занятий с топовым преподавателем</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Носители языка для практики речи</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Поддержка преподавателя 24/7 в чате</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-purpleDark"></i> Персональный сертификат окончания</li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="openModal('Тариф Интенсив')" class="w-full bg-white border-2 border-brand-dark text-brand-dark font-bold py-3.5 rounded-xl hover:bg-brand-dark hover:text-white transition-colors">
+                        Выбрать тариф
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section id="faq" class="py-16 sm:py-24 bg-brand-bg section-fade">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-dark">Часто задаваемые вопросы</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-accordion">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 cursor-pointer faq-item transition-all hover:shadow-md">
+                    <div class="flex justify-between items-center font-bold text-base sm:text-lg text-brand-dark">
+                        <span>Как проходит бесплатный пробный урок?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 faq-icon text-brand-purpleDark"></i>
+                    </div>
+                    <div class="mt-3 text-gray-600 text-sm leading-relaxed hidden faq-answer">
+                        Пробное занятие длится 30 минут. Преподаватель определит ваш текущий уровень, обсудит ваши цели и покажет, как устроена интерактивная платформа.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 cursor-pointer faq-item transition-all hover:shadow-md">
+                    <div class="flex justify-between items-center font-bold text-base sm:text-lg text-brand-dark">
+                        <span>Могу ли я поменять преподавателя, если мы не сойдемся?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 faq-icon text-brand-purpleDark"></i>
+                    </div>
+                    <div class="mt-3 text-gray-600 text-sm leading-relaxed hidden faq-answer">
+                        Да, конечно! Вы можете сменить преподавателя в любой момент в личном кабинете без каких-либо дополнительных оплат.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 cursor-pointer faq-item transition-all hover:shadow-md">
+                    <div class="flex justify-between items-center font-bold text-base sm:text-lg text-brand-dark">
+                        <span>Что нужно для проведения уроков?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 faq-icon text-brand-purpleDark"></i>
+                    </div>
+                    <div class="mt-3 text-gray-600 text-sm leading-relaxed hidden faq-answer">
+                        Вам потребуется компьютер, планшет или смартфон с хорошим интернетом, микрофоном и камерой. Никаких дополнительных программ устанавливать не нужно.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 cursor-pointer faq-item transition-all hover:shadow-md">
+                    <div class="flex justify-between items-center font-bold text-base sm:text-lg text-brand-dark">
+                        <span>Есть ли рассрочка или оплата частями?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 faq-icon text-brand-purpleDark"></i>
+                    </div>
+                    <div class="mt-3 text-gray-600 text-sm leading-relaxed hidden faq-answer">
+                        Да, мы предлагаем оплату частями для пакетов «Стандарт» и «Интенсив» (через Kaspi Red или рассрочку от банка-партнёра). Условия обсуждаются индивидуально с менеджером.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 cursor-pointer faq-item transition-all hover:shadow-md">
+                    <div class="flex justify-between items-center font-bold text-base sm:text-lg text-brand-dark">
+                        <span>Что делать, если я пропустил урок?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 faq-icon text-brand-purpleDark"></i>
+                    </div>
+                    <div class="mt-3 text-gray-600 text-sm leading-relaxed hidden faq-answer">
+                        Вы можете перенести урок без потери оплаты, если предупредите преподавателя минимум за 4 часа до начала. Пропуски без предупреждения сгорают.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+    <!-- 7. ФУТЕР -->
+    <footer id="contacts" class="bg-brand-dark text-white pt-16 sm:pt-24 pb-12 border-t-4 border-brand-lime relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Блок вопросов и формы -->
+            <div class="pb-12 sm:pb-16 mb-12 sm:mb-16 border-b border-gray-800/80 flex flex-col lg:flex-row items-center justify-between gap-10 text-center lg:text-left">
+                <div class="max-w-xl">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                        Остались вопросы по программам?
+                    </h3>
+                    <p class="text-gray-400 text-sm sm:text-base mt-2 font-medium">
+                        Оставьте контакты — бесплатно проконсультируем вас в WhatsApp и подберем удобное время.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                    <input type="tel" id="footer-phone" placeholder="+7 (707) 000-00-00" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="px-5 py-3.5 bg-gray-900 border border-gray-700 rounded-xl text-white text-sm focus:outline-none focus:border-brand-lime w-full sm:w-72 font-medium">
+                    <button type="button" onclick="submitFooterPhone()" class="bg-brand-lime hover:bg-white text-brand-dark font-extrabold px-8 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap shadow-lg shrink-0">
+						Перезвоните мне
+					</button>
+                </div>
+            </div>
+
+            <!-- Сетка -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 sm:pb-16 border-b border-gray-800/80">
+                
+                <div class="md:col-span-5 space-y-5">
+                   <a href="#" class="inline-flex items-center gap-0.5 group" aria-label="LingoVibe — на главную">
+						<div class="w-10 h-10 rounded-xl bg-brand-lime flex items-center justify-center font-extrabold text-xl text-brand-dark transition-transform group-hover:rotate-6 shrink-0">L</div>
+						<span class="text-2xl font-extrabold tracking-tight text-white leading-none pl-1 mt-1">ingo<span class="text-brand-lime">Vibe</span></span>
+					</a>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        Онлайн-школа английского языка, которая помогает говорить уверенно, без страха и языковых барьеров.
+                    </p>
+                    
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="javascript:void(0)" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-300 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent transition-all hover:-translate-y-1" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-transparent transition-all hover:-translate-y-1" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-300 hover:bg-sky-500 hover:text-white hover:border-transparent transition-all hover:-translate-y-1" aria-label="Telegram">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-3 md:col-start-7 space-y-5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brand-lime">Быстрая навигация</h4>
+                    <ul class="space-y-3 text-sm text-gray-300 font-medium">
+                        <li><a href="#about" class="hover:text-brand-lime transition-colors">О школе</a></li>
+                        <li><a href="#courses" class="hover:text-brand-lime transition-colors">Направления</a></li>
+                        <li><a href="#pricing" class="hover:text-brand-lime transition-colors">Стоимость</a></li>
+                        <li><a href="#faq" class="hover:text-brand-lime transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 space-y-5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brand-lime">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-gray-300 font-medium">
+                        <li>
+                            <a href="mailto:hello@lingovibe.kz" class="flex items-center gap-3 hover:text-brand-lime transition-colors">
+                                <i class="fa-solid fa-envelope text-brand-purple w-4 text-center"></i>
+                                <span>hello@lingovibe.kz</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+77770008899" class="flex items-center gap-3 hover:text-brand-lime transition-colors">
+                                <i class="fa-solid fa-phone text-brand-purple w-4 text-center"></i>
+                                <span>+7 (777) 000-88-99</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://2gis.kz/almaty/search/пр. Достык 105" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 hover:text-brand-lime transition-colors group">
+                                <i class="fa-solid fa-location-dot text-brand-purple w-4 text-center mt-0.5 group-hover:text-brand-lime transition-colors"></i>
+                                <span>г. Алматы, пр. Достык 105</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>© 2026 LingoVibe English School. Все права защищены.</p>
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" class="hover:text-gray-300 transition-colors">Политика конфиденциальности</a>
+                    <a href="javascript:void(0)" class="hover:text-gray-300 transition-colors">Публичная оферта</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!-- МОДАЛКА -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white rounded-[32px] max-w-md w-full p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] relative transform transition-all">
+            
+            <!-- Кнопка закрытия -->
+            <button type="button" onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-brand-dark bg-gray-50 hover:bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-all z-50" aria-label="Закрыть">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Шапка модалки -->
+            <div id="modal-header" class="text-center mb-8">
+                <div class="w-16 h-16 bg-brand-lime/20 rounded-2xl mx-auto flex items-center justify-center text-brand-purpleDark text-3xl mb-4">
+                    <i id="modal-icon" class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-brand-dark tracking-tight" id="modal-title">Бесплатный урок</h3>
+                <p class="text-sm text-gray-500 mt-2 font-medium px-4">Оставьте контакты, и мы свяжемся с вами в течение 15 минут.</p>
+            </div>
+
+            <!-- Форма -->
+            <form id="modal-form" class="space-y-4" novalidate>
+                <div>
+                    <input type="text" id="modal-name" name="name" required placeholder="Имя" class="w-full bg-gray-50/50 border border-gray-200 rounded-2xl px-5 py-4 text-sm text-brand-dark focus:outline-none focus:border-brand-purpleDark focus:ring-4 focus:ring-brand-purple/10 transition-all font-medium">
+                    <!-- Текст ошибки для имени -->
+                    <p class="text-red-500 text-xs mt-1 hidden" id="name-error">Пожалуйста, введите имя</p>
+                </div>
+                
+                <div>
+                    <input type="tel" id="modal-phone" name="phone" required placeholder="+7 (707) 000-00-00" class="w-full bg-gray-50/50 border border-gray-200 rounded-2xl px-5 py-4 text-sm text-brand-dark focus:outline-none focus:border-brand-purpleDark focus:ring-4 focus:ring-brand-purple/10 transition-all font-medium">
+                    <!-- Текст ошибки для телефона -->
+                    <p class="text-red-500 text-xs mt-1 hidden" id="phone-error">Введите корректный номер телефона</p>
+                </div>
+
+                <div id="modal-level-wrapper">
+                    <select id="modal-level" name="level" class="w-full bg-gray-50/50 border border-gray-200 rounded-2xl px-5 py-4 text-sm text-gray-700 focus:outline-none focus:border-brand-purpleDark focus:ring-4 focus:ring-brand-purple/10 transition-all appearance-none cursor-pointer font-medium">
+                        <option value="" disabled selected hidden>Выберите уровень</option>
+                        <option>Начинающий (A1-A2)</option>
+                        <option>Средний (B1-B2)</option>
+                        <option>Продвинутый (C1-C2)</option>
+                        <option>Не знаю свой уровень</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-start gap-3 pt-2 pl-1">
+                    <input type="checkbox" id="modal-agree" required class="mt-0.5 w-4 h-4 accent-brand-dark rounded border-gray-300 cursor-pointer">
+                    <div>
+                        <label for="modal-agree" class="text-[11px] text-gray-500 leading-snug font-medium cursor-pointer">
+                            Я согласен на обработку <a href="javascript:void(0)" class="text-brand-purpleDark underline decoration-brand-purple/30 underline-offset-2 hover:decoration-brand-purple">персональных данных</a>
+                        </label>
+                        <!-- Текст ошибки для чекбокса -->
+                        <p class="text-red-500 text-[11px] mt-1 hidden" id="agree-error">Необходимо ваше согласие</p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-brand-dark hover:bg-black text-white font-bold py-4 rounded-2xl transition-all duration-300 shadow-[0_8px_20px_-6px_rgba(20,21,23,0.5)] active:scale-[0.98] text-base mt-4">
+                    Отправить заявку
+                </button>
+            </form>
+
+            <!-- Экран успеха -->
+            <div id="modal-success" class="hidden text-center py-10">
+                <div class="w-20 h-20 bg-brand-lime/20 rounded-full mx-auto flex items-center justify-center text-brand-purpleDark text-4xl mb-6 animate-pulse">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="text-2xl font-extrabold text-brand-dark mb-2">Заявка принята!</h4>
+                <p class="text-sm text-gray-500 px-4">Наш менеджер свяжется с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДКЛЮЧЕНИЕ СКРИПТА -->
+    <script src="script.js"></script>
+
+</body>
+</html>
