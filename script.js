@@ -320,12 +320,14 @@ function toggleMenu() {
         menuIcon.classList.remove('fa-xmark');
         menuIcon.classList.add('fa-bars');
         document.body.classList.remove('menu-open');
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
     } else {
         mobileMenu.classList.remove('translate-x-full');
         mobileMenu.classList.add('translate-x-0');
         menuIcon.classList.remove('fa-bars');
         menuIcon.classList.add('fa-xmark');
         document.body.classList.add('menu-open');
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
     }
 }
 

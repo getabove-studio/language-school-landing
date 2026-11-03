@@ -179,3 +179,14 @@ section {
     }
     .parallax-bg, .parallax-element { transform: none !important; }
 }
+
+/* =========================================
+   8. СКРЫТИЕ СКРОЛЛБАРА В МОБИЛЬНОМ МЕНЮ
+   ========================================= */
+#mobile-menu > div::-webkit-scrollbar {
+    display: none;
+}
+#mobile-menu > div {
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;  /* Firefox */
+}

@@ -79,21 +79,27 @@
         </div>
     </header>
 
-       <!-- МОБИЛЬНОЕ МЕНЮ -->
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-white z-[55] translate-x-full transition-transform duration-300 lg:hidden shadow-2xl flex flex-col px-6 pt-28 pb-8">
-        <!-- Добавили pt-28 (опустили вниз) и pb-8 (отодвинули от низа). Блок ссылок теперь скроллится, если не влезает -->
-        <div class="flex flex-col gap-5 font-bold text-gray-800 text-lg overflow-y-auto mb-6"> 
-            <a href="#about" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">О школе</a>
-            <a href="#courses" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Направления</a>
-            <a href="#pricing" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Стоимость</a>
-            <a href="#faq" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">FAQ</a>
-            <a href="#contacts" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Контакты</a>
-            <a href="#" onclick="openModal('Стать преподавателем')" class="mobile-link hover:text-brand-purpleDark border-b border-gray-100 pb-3">Стать преподавателем</a>
+      <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-white z-[55] translate-x-full transition-transform duration-300 lg:hidden shadow-2xl">
+        
+        <!-- Кнопка закрытия (крестик) на самом верху -->
+        <button type="button" onclick="toggleMenu()" class="absolute top-6 right-6 p-2 text-brand-dark hover:text-brand-purpleDark focus:outline-none z-[60] bg-white/80 rounded-full backdrop-blur-sm" aria-label="Закрыть меню">
+            <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+
+        <!-- Блок ссылок (с отступами, чтобы не залезать под крестик и кнопку) -->
+        <div class="flex flex-col gap-2 font-bold text-gray-800 text-lg overflow-y-auto px-6 pt-24 pb-32 h-full"> 
+            <a href="#about" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">О школе</a>
+            <a href="#courses" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">Направления</a>
+            <a href="#pricing" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">Стоимость</a>
+            <a href="#faq" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">FAQ</a>
+            <a href="#contacts" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">Контакты</a>
+            <a href="#" onclick="openModal('Стать преподавателем'); toggleMenu();" class="mobile-link px-3 py-2 rounded-lg hover:text-brand-purpleDark border-b border-gray-100 active:bg-brand-purple/10 active:text-brand-purpleDark active:border-brand-purpleDark transition-all">Стать преподавателем</a>
         </div>
         
-        <!-- Кнопка прижата к низу, но не перекрывается плашкой -->
-        <div class="mt-auto">
-            <button type="button" onclick="openModal()" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl shadow-lg active:scale-95 text-lg hover:bg-black transition-colors">
+        <!-- Кнопка жестко прибита к низу -->
+        <div class="absolute bottom-20 left-0 w-full px-6">
+            <button type="button" onclick="openModal(); toggleMenu();" class="w-full bg-brand-dark text-white font-extrabold py-4 rounded-xl shadow-lg active:scale-95 text-lg hover:bg-black transition-colors">
                 Попробовать бесплатно
             </button>
         </div>
