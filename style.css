@@ -190,3 +190,19 @@ section {
     -ms-overflow-style: none;  /* IE и Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+/* =========================================
+   9. ПОЛНОЕ УДАЛЕНИ ПЛАШКИ NETLIFY
+   ========================================= */
+#nl-badge-frame,
+iframe[id="nl-badge-frame"],
+iframe[title="Powered by Netlify"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    height: 0 !important;
+    width: 0 !important;
+}
